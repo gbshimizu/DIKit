@@ -54,7 +54,7 @@ do {
 
 do {
     let generator = try CodeGenerator(path: path, excluding: exclusions)
-    print(try generator.generate())
+    try generator.generate().write(to: URL(fileURLWithPath: outputPath), atomically: true, encoding: .utf8)
 } catch let anyError {
     guard
         let error = anyError as? (Error & Findable),
